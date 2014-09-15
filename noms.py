@@ -3,7 +3,7 @@ from config import WOLFRAM_KEY
 import sys
 import wolframalpha
 
-POD_TITLE = 'Average nutrition facts'
+POD_TITLES = ['Average nutrition facts', 'Nutrition facts']
 QUERY = input()
 
 
@@ -23,7 +23,7 @@ def get_macros(pod_text):
 client = wolframalpha.Client(WOLFRAM_KEY)
 res = client.query(QUERY)
 try:
-    macros = get_macros([p for p in res.pods if p.title == POD_TITLE][0].text)
+    macros = get_macros([p for p in res.pods if p.title in POD_TITLES][0].text)
 except IndexError:
     print(QUERY + '\'s macros not found on Wolfram.')
     sys.exit(1)

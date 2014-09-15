@@ -18,3 +18,9 @@ Carbs: 18g
 ## Known Issues
 
 * long query times (around 10-12s per search)
+* queries aren't automatically interpreted as food. This results in some food yielding silly results.
+```bash
+$./noms.py
+water
+water's macros not found on Wolfram.
+```

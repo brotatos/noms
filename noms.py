@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from config import WOLFRAM_KEY
+import sys
 import wolframalpha
 
 POD_TITLE = 'Average nutrition facts'
@@ -11,17 +12,21 @@ def get_macros(pod_text):
     for t in items:
         chunks = t.split()
         if 'protein' in chunks:
-            protein = tuple(chunks[-2::])
+            protein = chunks[-2::]
         elif 'total' in chunks:
             if 'carbohydrates' in chunks:
-                carbs = tuple(chunks[-2::])
+                carbs = chunks[-2::]
             elif 'fat' in chunks:
-                fat = tuple(chunks[-2::])
+                fat = chunks[-2::]
     return protein, carbs, fat
 
 client = wolframalpha.Client(WOLFRAM_KEY)
 res = client.query(QUERY)
-macros = get_macros([p for p in res.pods if p.title == POD_TITLE][0].text)
+try:
+    macros = get_macros([p for p in res.pods if p.title == POD_TITLE][0].text)
+except IndexError:
+    print(QUERY + '\'s macros not found on Wolfram.')
+    sys.exit(1)
 
 print('-' * len(QUERY))
 print("Protein: " + macros[0][0] + macros[0][1])

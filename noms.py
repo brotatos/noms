@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 from config import WOLFRAM_KEY
 import wolframalpha
-import datetime
 
 POD_TITLE = 'Average nutrition facts'
-
 QUERY = input()
+
 
 def get_macros(pod_text):
     items = pod_text.split("|")

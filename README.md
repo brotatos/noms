@@ -5,6 +5,13 @@ A quick hack for querying the protein, fat, and carbs of various foods.
 This script utilizes the Wolfram Alpha API and, thus, requires an API key. You
 can obtain a key [here](http://products.wolframalpha.com/api/).
 
+## Setup
+```bash
+$ virtualenv env/
+$ source env/bin/activate
+$ pip install -r requirements.txt
+```
+
 ## Usage
 ```bash
 $ ./noms.py
